@@ -87,15 +87,19 @@ strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 /usr/sbin/install-catalog --install dsssl  --version  %{jadever}-%{release}
 
 %preun
-/usr/sbin/install-catalog --remove dsssl   --version  %{jadever}-%{release}
+if [ "$1" = "0" ]; then
+	/usr/sbin/install-catalog --remove dsssl   --version  %{jadever}-%{release}
+fi
 
 %post -n sp
 /usr/sbin/install-catalog --install sp-html --version %{spver}-%{release}
 /usr/sbin/install-catalog --install unicode --version %{spver}-%{release}
 
 %preun -n sp
-/usr/sbin/install-catalog --remove sp-html --version %{spver}-%{release} 
-/usr/sbin/install-catalog --remove unicode --version %{spver}-%{release}
+if [ "$1" = "0" ]; then
+	/usr/sbin/install-catalog --remove sp-html --version %{spver}-%{release} 
+	/usr/sbin/install-catalog --remove unicode --version %{spver}-%{release}
+fi
 
 %clean
 rm -rf $RPM_BUILD_ROOT

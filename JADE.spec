@@ -22,7 +22,7 @@ URL:		http://www.jclark.com/jade/
 Prereq:		%{_sbindir}/install-catalog
 Requires:	sgml-common
 Requires:	sp
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Jade (James' DSSSL Engine) is an implementation of the DSSSL style language. 

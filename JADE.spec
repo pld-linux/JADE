@@ -1,12 +1,12 @@
-# XXX: consider rename (to JADE?) - jade was used for another project
 Summary:	Java Agent DEvelopment Framework
 Summary(pl):	Szkielet do programowania w Javie
-Name:		jade
+Name:		JADE
 Version:	3.2
 Release:	0.1
 License:	LGPL
 Group:		Development/Languages/Java
-Source0:	JADE-src-%{version}.zip
+# http://jade.tilab.com/download.php - download requires registration?!
+Source0:	%{name}-src-%{version}.zip
 # Source0-md5:	3dd2984dd4e61a4eea5f720d854b2f06
 URL:		http://jade.tilab.com/
 BuildRequires:	jakarta-ant
@@ -25,8 +25,8 @@ pe³ni zaimplementowany w jêzyku Java.
 
 # TODO:
 #%package doc
-#Summary:	Online manual for jade
-#Summary(pl):	Dokumentacja online do jade
+#Summary:	Online manual for JADE
+#Summary(pl):	Dokumentacja online do JADE
 #Group:		Documentation
 
 #%description doc

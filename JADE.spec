@@ -4,7 +4,7 @@ Name:		jade
 %define		jver  1.2.1
 %define		spver 1.3.3
 Version:	%{jver}
-Release:	3
+Release:	4
 Serial:		6
 Vendor:		James Clark
 Group:		Applications/Publishing/SGML
@@ -51,11 +51,10 @@ do normalizacji SGML-a (sgmlnorm), konwersji tego¿ do XMLa (sx).
 %patch -p1
 
 %build
-LDFLAGS="-s"; export LDFLAGS
+LDFLAGS="-s"
 CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti"
-export CXXFLAGS
+export CXXFLAGS LDFLAGS
 %configure \
-	--prefix=%{_prefix} \
 	--sharedstatedir=%{_datadir} \
 	--enable-default-catalog=%{_datadir}/sgml/CATALOG  \
 	--enable-shared \

@@ -11,6 +11,7 @@ Source0:	%{name}-src-%{version}.zip
 URL:		http://jade.tilab.com/
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk
+BuildRequires:  unzip
 Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,7 +33,7 @@ pe³ni zaimplementowany w jêzyku Java.
 #%description doc
 
 %prep
-%setup -q -n %{name}
+%setup -q -n jade
 
 %build
 ant jade

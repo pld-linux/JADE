@@ -1,0 +1,3 @@
+PUBLIC "-//James Clark//DTD DSSSL Flow Object Tree//EN" "dsssl/jade/fot.dtd"
+PUBLIC "ISO/IEC 10179:1996//DTD DSSSL Architecture//EN" "dsssl/jade/dsssl.dtd"
+PUBLIC "-//James Clark//DTD DSSSL Style Sheet//EN" "dsssl/jade/style-sheet.dtd"

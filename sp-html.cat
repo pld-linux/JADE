@@ -1,0 +1,23 @@
+PUBLIC "-//W3C//DTD HTML 3.2 Final//EN" html/HTML32.dtd
+PUBLIC "-//W3C//DTD HTML 3.2 Draft//EN" html/HTML32.dtd
+PUBLIC "-//W3C//DTD HTML 3.2//EN" html/HTML32.dtd
+PUBLIC "ISO 8879-1986//ENTITIES Added Latin 1//EN//HTML" html/ISOlat1.ent
+PUBLIC "-//W3C//DTD HTML 4.0//EN" html/HTML4-s.dtd
+PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" html/HTML4.dtd
+PUBLIC "-//W3C//DTD HTML 4.0 Frameset//EN" html/HTML4-f.dtd
+PUBLIC "-//W3C//ENTITIES Latin1//EN//HTML" html/HTMLlat1.ent
+PUBLIC "-//W3C//ENTITIES Special//EN//HTML" html/HTMLspec.ent
+PUBLIC "-//W3C//ENTITIES Symbols//EN//HTML" html/HTMLsym.ent
+PUBLIC	"-//IETF//DTD HTML//EN"			html/html.dtd
+PUBLIC	"-//IETF//DTD HTML 2.0//EN"		html/html.dtd
+PUBLIC	"-//IETF//DTD HTML Level 2//EN"		html/html.dtd
+PUBLIC	"-//IETF//DTD HTML 2.0 Level 2//EN"	html/html.dtd
+PUBLIC	"-//IETF//DTD HTML Level 1//EN"		html/html-1.dtd
+PUBLIC	"-//IETF//DTD HTML 2.0 Level 1//EN"	html/html-1.dtd
+PUBLIC	"-//IETF//DTD HTML Strict//EN"			html/html-s.dtd
+PUBLIC	"-//IETF//DTD HTML 2.0 Strict//EN"		html/html-s.dtd
+PUBLIC	"-//IETF//DTD HTML Strict Level 2//EN"		html/html-s.dtd
+PUBLIC	"-//IETF//DTD HTML 2.0 Strict Level 2//EN"	html/html-s.dtd
+PUBLIC	"-//IETF//DTD HTML Strict Level 1//EN"		html/html-1s.dtd
+PUBLIC	"-//IETF//DTD HTML 2.0 Strict Level 1//EN"	html/html-1s.dtd
+PUBLIC	"ISO 8879-1986//ENTITIES Added Latin 1//EN//HTML"	html/ISOlat1.sgm

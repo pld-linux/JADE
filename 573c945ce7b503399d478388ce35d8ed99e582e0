@@ -1,0 +1,34 @@
+- added using CVS keywords in %changelog (for automating them).
+
+* Fri Jun 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.1-3]
+- changed sp package version to 1.3.3,
+- added runing /sbin/ldconfig in %post, %postun,
+- added gzippng some %doc,
+- removed %config from *.cat files.
+
+* Thu Oct 26 1998 Ziemek Borowski <ziembor@faq-bot.ziembor.waw.pl>
+  [1.2.1-1] 
+- upgrade to 1.2.1 (with dynamic libraries -- changes in %files part)
+- corrects to *.cat files (not dynamicaly generated). 
+- (I`m not sure if we ought to include *.la files -- not included).  
+- added --enable-mif (but it does`t working ;-( 
+- some cosmetic changes in spec: (new group, new prereq) 
+- simplifications in %post{un}
+
+* Thu Sep 26 1998 Ziemek Borowski <ziembor@faq-bot.ziembor.waw.pl>
+  [1_2-4]
+- updated new version
+- added  -Dsig_atomic_t=int to make (against glibc-2.x --
+  required in glibc-2.0.93 but its help in 2.0.7 too)
+
+* Thu Sep 10 1998 Wojtek ¦lusarczyk <wojtek@SHADOW.EU.ORG>
+  [1_1_1-3]
+- patch against glibc 2.0.93  (quick & dirty)   (not nessessary in 1_2)
+
+* Mon Sep 07 1998 Ziemek Borowski <ziembor@faq-bot.ziembor.waw.pl>
+  [1_1_1-2]
+- added Polish .spec tranlation
+- more detailed .spec
+- separated to: jade, and sp  packages
+- based od Mark Gallasi works ftp://ftp.cygnus.com/pub/home/rozalia/docware

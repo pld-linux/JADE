@@ -4,8 +4,8 @@ Name:		jade
 %define		jver  1.2.1
 %define		spver 1.3.3
 Version:	%{jver}
-Release:	5
-Serial:		6
+Release:	6
+Serial:		7
 Vendor:		James Clark
 Group:		Applications/Publishing/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
@@ -136,7 +136,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n sp
 %defattr(644,root,root,755)
-%doc doc/
+%doc doc/*.htm
 
 %attr(755,root,root) %{_bindir}/s*
 %attr(755,root,root) %{_bindir}/nsgmls

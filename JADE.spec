@@ -1,7 +1,9 @@
 Summary:	Jade -- DSSSL parser
 Summary(pl):	Jade -- parser DSSSL
 Name:		jade
-Version:	1.2.1
+%define		jver  1.2.1
+%define		spver 1.3.3
+Version:	%{jver}
 Release:	3
 Serial:		6
 Vendor:		James Clark
@@ -31,7 +33,7 @@ Summary:	SP -- parser and tools for SGML
 Summary(pl):	SP -- parser and tools for SGML
 Group:		Applications/Publishing/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
-Version:	1.3.3
+Version:	%{spver}
 URL:		http://www.jclark.com/sp/
 Prereq:		/usr/sbin/install-catalog
 Provides:	sgmlparser
@@ -81,11 +83,11 @@ cp -ar dsssl/dsssl.dtd dsssl/style-sheet.dtd dsssl/fot.dtd \
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 %post
-/usr/sbin/install-catalog --install dsssl  --version  %{jadever}-%{release}
+/usr/sbin/install-catalog --install dsssl --version %{jfer}-%{release}
 
 %preun
 if [ "$1" = "0" ]; then
-	/usr/sbin/install-catalog --remove dsssl   --version  %{jadever}-%{release}
+	/usr/sbin/install-catalog --remove dsssl --version %{jver}-%{release}
 fi
 
 %post -n sp

@@ -92,7 +92,7 @@ install */*.1 $RPM_BUILD_ROOT%{_mandir}/man1
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1 \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
 	README COPYING
 
 %post

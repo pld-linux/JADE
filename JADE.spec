@@ -82,17 +82,23 @@ cp -ar dsssl/dsssl.dtd dsssl/style-sheet.dtd dsssl/fot.dtd \
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
+gzip -9nf README COPYING
+
 %post
-/usr/sbin/install-catalog --install dsssl --version %{jfer}-%{release}
+/usr/sbin/install-catalog --install dsssl --version %{jver}-%{release}
+/sbin/ldconfig
 
 %preun
 if [ "$1" = "0" ]; then
 	/usr/sbin/install-catalog --remove dsssl --version %{jver}-%{release}
 fi
 
+%postun -p /sbin/ldconfig
+
 %post -n sp
 /usr/sbin/install-catalog --install sp-html --version %{spver}-%{release}
 /usr/sbin/install-catalog --install unicode --version %{spver}-%{release}
+/sbin/ldconfig
 
 %preun -n sp
 if [ "$1" = "0" ]; then
@@ -100,19 +106,21 @@ if [ "$1" = "0" ]; then
 	/usr/sbin/install-catalog --remove unicode --version %{spver}-%{release}
 fi
 
+%postun -n sp -p /sbin/ldconfig
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc jadedoc/ dsssl/ README COPYING VERSION
+%doc jadedoc/ dsssl/ *gz
 
 %attr(755,root,root) %{_bindir}/jade
-%attr(755,root,root) %{_libdir}/libstyle.so*
-%attr(755,root,root) %{_libdir}/libgrove.so*
-%attr(755,root,root) %{_libdir}/libspgrove.so*
+%attr(755,root,root) %{_libdir}/libstyle.so.*.*
+%attr(755,root,root) %{_libdir}/libgrove.so.*.*
+%attr(755,root,root) %{_libdir}/libspgrove.so.*.*
 
-%config %{_datadir}/sgml/dsssl.cat
+%{_datadir}/sgml/dsssl.cat
 %{_datadir}/sgml/dsssl/*
 
 %files -n sp
@@ -121,15 +129,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) %{_bindir}/s*
 %attr(755,root,root) %{_bindir}/nsgmls
-%attr(755,root,root) %{_libdir}/libsp.so*
+%attr(755,root,root) %{_libdir}/libsp.so.*.*
 
-%config %{_datadir}/sgml/sp-html.cat
+%{_datadir}/sgml/sp-html.cat
 %{_datadir}/sgml/html
 
-%config %{_datadir}/sgml/unicode.cat
+%{_datadir}/sgml/unicode.cat
 %{_datadir}/sgml/unicode
 
 %changelog
+* Fri Jun 25 1999 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.2.1-3]
+- changed sp package version to 1.3.3,
+- added runing /sbin/ldconfig in %post, %postun,
+- added gzippng some %doc,
+- removed %config from *.cat files.
+
 * Thu Oct 26 1998 Ziemek Borowski <ziembor@faq-bot.ziembor.waw.pl>
   [1.2.1-1] 
 - upgrade to 1.2.1 (with dynamic libraries -- changes in %files part)

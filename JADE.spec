@@ -1,11 +1,11 @@
 Summary:	Jade -- DSSSL parser
-Summary(pl):	Jade  -- parser DSSSL
+Summary(pl):	Jade -- parser DSSSL
 %define		jade jade
 %define		jadever 1.2.1
 %define		spver 1.3.1
 Name:		%{jade}
 Version:	%{jadever}
-Release:	2
+Release:	3
 Serial:		6
 Vendor:		James Clark
 Group:		Applications/Publishing/SGML
@@ -15,6 +15,7 @@ Source0:	ftp://ftp.jclark.com/pub/jade/%{name}-%{version}.tar.gz
 Source1:	unicode.cat
 Source2:	dsssl.cat
 Source3:	sp-html.cat
+patch:		jade-DESTDIR.patch
 Provides:	dssslparser
 URL:		http://www.jclark.com/jade/
 Prereq:		/usr/sbin/install-catalog
@@ -48,37 +49,39 @@ do normalizacji SGML-a (sgmlnorm), konwersji tego¿ do XMLa (sx).
 
 %prep
 %setup -q  
+%patch -p1
 
 %build
+LDFLAGS="-s"; export LDFLAGS
+CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti"
+export CXXFLAGS
 %configure \
-	--prefix=/usr \
-	--enable-shared \
-	--with-gnu-ld \
+	--prefix=%{_prefix} \
 	--sharedstatedir=%{_datadir} \
 	--enable-default-catalog=%{_datadir}/sgml/CATALOG  \
+	--enable-shared \
+	--with-gnu-ld \
 	--enable-mif
 
 make  
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_datadir}/sgml/{dsssl/jade,html}
-	$RPM_BUILD_ROOT%{_libdir}
 
-make -f Makefile install prefix="$RPM_BUILD_ROOT/usr"
+make install DESTDIR="$RPM_BUILD_ROOT"
 
 cp -ar pubtext/* $RPM_BUILD_ROOT%{_datadir}/sgml/html
 cp -ar unicode $RPM_BUILD_ROOT%{_datadir}/sgml
 
 install $RPM_SOURCE_DIR/{dsssl,sp-html,unicode}.cat \
-    $RPM_BUILD_ROOT/usr/share/sgml
+	$RPM_BUILD_ROOT/usr/share/sgml
 
 cp -ar dsssl/catalog $RPM_BUILD_ROOT%{_datadir}/sgml/dsssl/jade
 cp -ar dsssl/dsssl.dtd dsssl/style-sheet.dtd dsssl/fot.dtd \
 	$RPM_BUILD_ROOT%{_datadir}/sgml/dsssl/jade
 
-strip $RPM_BUILD_ROOT%{_bindir}/*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 %post
 /usr/sbin/install-catalog --install dsssl  --version  %{jadever}-%{release}
@@ -106,8 +109,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgrove.so*
 %attr(755,root,root) %{_libdir}/libspgrove.so*
 
-%config {_datadir}/sgml/dsssl.cat
-{_datadir}/sgml/dsssl/*
+%config %{_datadir}/sgml/dsssl.cat
+%{_datadir}/sgml/dsssl/*
 
 %files -n sp
 %defattr(644,root,root,755)
@@ -117,11 +120,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/nsgmls
 %attr(755,root,root) %{_libdir}/libsp.so*
 
-%config {_datadir}/sgml/sp-html.cat
-{_datadir}/sgml/html
+%config %{_datadir}/sgml/sp-html.cat
+%{_datadir}/sgml/html
 
-%config {_datadir}/sgml/unicode.cat
-{_datadir}/sgml/unicode
+%config %{_datadir}/sgml/unicode.cat
+%{_datadir}/sgml/unicode
 
 %changelog
 * Thu Oct 26 1998 Ziemek Borowski <ziembor@faq-bot.ziembor.waw.pl>

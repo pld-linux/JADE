@@ -1,0 +1,29 @@
+diff -Nru jade-1.2.1/Makefile.lib.in jade-1.2.1.new/Makefile.lib.in
+--- jade-1.2.1/Makefile.lib.in	Sun Oct 11 13:07:06 1998
++++ jade-1.2.1.new/Makefile.lib.in	Thu Jun 24 19:32:08 1999
+@@ -20,7 +20,8 @@
+ 	    -rpath $(libdir) -version-info $(LTVERSION)
+ 
+ install:
+-	$(LIBTOOL) --mode=install $(INSTALL) lib$(LIB).la $(libdir)
++	-test -d $(DESTDIR)$(libdir) || mkdir $(DESTDIR)$(libdir)
++	$(LIBTOOL) --mode=install $(INSTALL) lib$(LIB).la $(DESTDIR)$(libdir)
+ 
+ install-man:
+ depend: depend_src
+diff -Nru jade-1.2.1/Makefile.prog.in jade-1.2.1.new/Makefile.prog.in
+--- jade-1.2.1/Makefile.prog.in	Mon Oct 12 03:36:20 1998
++++ jade-1.2.1.new/Makefile.prog.in	Thu Jun 24 19:32:18 1999
+@@ -17,9 +17,9 @@
+ 	$(LIBTOOL) --mode=link $(CXX) $(CXXFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(COBJS) $(LT_LIBS)
+ 
+ install: $(PROG)
+-	-test -d $(bindir) || (mkdir $(bindir); chmod 755 $(bindir))
+-	-rm -f $(bindir)/$(PROG)
+-	$(LIBTOOL) --mode=install $(INSTALL) $(PROG) $(bindir)
++	-test -d $(DESTDIR)$(bindir) || (mkdir $(DESTDIR)$(bindir); chmod 755 $(DESTDIR)$(bindir))
++	-rm -f $(DESTDIR)$(bindir)/$(PROG)
++	$(LIBTOOL) --mode=install $(INSTALL) $(PROG) $(DESTDIR)$(bindir)
+ 
+ depend: depend_src
+ depend.temp: $(GENSRCS)

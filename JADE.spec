@@ -1,4 +1,6 @@
+# XXX: consider rename (to JADE?) - jade was used for another project
 Summary:	Java Agent DEvelopment Framework
+Summary(pl):	Szkielet do programowania w Javie
 Name:		jade
 Version:	3.2
 Release:	0.1
@@ -7,8 +9,8 @@ Group:		Development/Languages/Java
 Source0:	JADE-src-%{version}.zip
 # Source0-md5:	3dd2984dd4e61a4eea5f720d854b2f06
 URL:		http://jade.tilab.com/
-BuildRequires:	jdk
 BuildRequires:	jakarta-ant
+BuildRequires:	jdk
 Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -16,6 +18,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 JADE (Java Agent DEvelopment Framework) is a software framework fully
 implemented in Java language.
+
+%description -l pl
+JADE (Java Agent DEvelopment Framework) to szkielet oprogramowania w
+pe³ni zaimplementowany w jêzyku Java.
 
 # TODO:
 #%package doc

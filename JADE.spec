@@ -1,10 +1,7 @@
 Summary:	Jade -- DSSSL parser
 Summary(pl):	Jade -- parser DSSSL
-%define		jade jade
-%define		jadever 1.2.1
-%define		spver 1.3.1
-Name:		%{jade}
-Version:	%{jadever}
+Name:		jade
+Version:	1.2.1
 Release:	3
 Serial:		6
 Vendor:		James Clark
@@ -34,11 +31,11 @@ Summary:	SP -- parser and tools for SGML
 Summary(pl):	SP -- parser and tools for SGML
 Group:		Applications/Publishing/SGML
 Group(pl):	Aplikacje/Publikowanie/SGML
+Version:	1.3.3
 URL:		http://www.jclark.com/sp/
 Prereq:		/usr/sbin/install-catalog
 Provides:	sgmlparser
 Requires:	sgml-common
-Version:	%{spver}_%{jadever}
 
 %description -n sp
 SGML parser called sp (replacement of sgmls).

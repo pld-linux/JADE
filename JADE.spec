@@ -4,7 +4,7 @@ Name:		jade
 %define		jver  1.2.1
 %define		spver 1.3.3
 Version:	%{jver}
-Release:	4
+Release:	5
 Serial:		6
 Vendor:		James Clark
 Group:		Applications/Publishing/SGML
@@ -14,7 +14,9 @@ Source0:	ftp://ftp.jclark.com/pub/jade/%{name}-%{version}.tar.gz
 Source1:	unicode.cat
 Source2:	dsssl.cat
 Source3:	sp-html.cat
-patch:		jade-DESTDIR.patch
+Patch0:		jade-DESTDIR.patch
+Patch1:		jade-manpages.patch
+Patch2:		jade-c++_fix.patch
 Provides:	dssslparser
 URL:		http://www.jclark.com/jade/
 Prereq:		%{_sbindir}/install-catalog
@@ -47,17 +49,24 @@ Parser SGML (bêd±cy nastêpc± pisanego w C sgmls) oraz narzêdzia
 do normalizacji SGML-a (sgmlnorm), konwersji tego¿ do XMLa (sx).
 
 %prep
-%setup -q  
-%patch -p1
+%setup  -q  
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
+rm -f configure
+mv config/configure.in .
+autoconf -l config
+libtoolize --copy --force
 LDFLAGS="-s"
-CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti"
+CXXFLAGS="$RPM_OPT_FLAGS -fno-rtti -fno-implicit-templates -fpermissive"
 export CXXFLAGS LDFLAGS
 %configure \
 	--sharedstatedir=%{_datadir} \
 	--enable-default-catalog=%{_datadir}/sgml/CATALOG  \
 	--enable-shared \
+	--enable-http \
 	--with-gnu-ld \
 	--enable-mif
 
@@ -65,7 +74,7 @@ make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/sgml/{dsssl/jade,html}
+install -d $RPM_BUILD_ROOT{%{_mandir}/man1,%{_datadir}/sgml/{dsssl/jade,html}}
 
 make install DESTDIR="$RPM_BUILD_ROOT"
 
@@ -79,9 +88,12 @@ cp -ar dsssl/catalog $RPM_BUILD_ROOT%{_datadir}/sgml/dsssl/jade
 cp -ar dsssl/dsssl.dtd dsssl/style-sheet.dtd dsssl/fot.dtd \
 	$RPM_BUILD_ROOT%{_datadir}/sgml/dsssl/jade
 
+install */*.1 $RPM_BUILD_ROOT%{_mandir}/man1
+
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-gzip -9nf README COPYING
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1 \
+	README COPYING
 
 %post
 %{_sbindir}/install-catalog --install dsssl --version %{jver}-%{release}
@@ -135,3 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_datadir}/sgml/unicode.cat
 %{_datadir}/sgml/unicode
+
+%{_mandir}/man1/spam.1*
+%{_mandir}/man1/spent.1*
+%{_mandir}/man1/nsgmls.1*

@@ -17,7 +17,7 @@ Source3:	sp-html.cat
 patch:		jade-DESTDIR.patch
 Provides:	dssslparser
 URL:		http://www.jclark.com/jade/
-Prereq:		/usr/sbin/install-catalog
+Prereq:		%{_sbindir}/install-catalog
 Requires:	sgml-common
 Requires:	sp
 BuildRoot:	/tmp/%{name}-%{version}-root
@@ -85,25 +85,25 @@ strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 gzip -9nf README COPYING
 
 %post
-/usr/sbin/install-catalog --install dsssl --version %{jver}-%{release}
+%{_sbindir}/install-catalog --install dsssl --version %{jver}-%{release}
 /sbin/ldconfig
 
 %preun
 if [ "$1" = "0" ]; then
-	/usr/sbin/install-catalog --remove dsssl --version %{jver}-%{release}
+	%{_sbindir}/install-catalog --remove dsssl --version %{jver}-%{release}
 fi
 
 %postun -p /sbin/ldconfig
 
 %post -n sp
-/usr/sbin/install-catalog --install sp-html --version %{spver}-%{release}
-/usr/sbin/install-catalog --install unicode --version %{spver}-%{release}
+%{_sbindir}/install-catalog --install sp-html --version %{spver}-%{release}
+%{_sbindir}/install-catalog --install unicode --version %{spver}-%{release}
 /sbin/ldconfig
 
 %preun -n sp
 if [ "$1" = "0" ]; then
-	/usr/sbin/install-catalog --remove sp-html --version %{spver}-%{release} 
-	/usr/sbin/install-catalog --remove unicode --version %{spver}-%{release}
+	%{_sbindir}/install-catalog --remove sp-html --version %{spver}-%{release} 
+	%{_sbindir}/install-catalog --remove unicode --version %{spver}-%{release}
 fi
 
 %postun -n sp -p /sbin/ldconfig

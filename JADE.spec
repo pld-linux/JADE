@@ -11,7 +11,7 @@ Source0:	%{name}-src-%{version}.zip
 URL:		http://jade.tilab.com/
 BuildRequires:	jakarta-ant
 BuildRequires:	jdk
-BuildRequires:  unzip
+BuildRequires:	unzip
 Requires:	jre
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

@@ -9,7 +9,7 @@ Group:		Development/Languages/Java
 Source0:	%{name}-src-%{version}.zip
 # Source0-md5:	3dd2984dd4e61a4eea5f720d854b2f06
 URL:		http://jade.tilab.com/
-BuildRequires:	jakarta-ant
+BuildRequires:	ant
 BuildRequires:	jdk
 BuildRequires:	unzip
 Requires:	jre

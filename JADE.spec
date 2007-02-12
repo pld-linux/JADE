@@ -1,5 +1,5 @@
 Summary:	Java Agent DEvelopment Framework
-Summary(pl.UTF-8):   Szkielet do programowania w Javie
+Summary(pl.UTF-8):	Szkielet do programowania w Javie
 Name:		JADE
 Version:	3.2
 Release:	0.1

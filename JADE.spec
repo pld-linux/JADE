@@ -1,5 +1,5 @@
 Summary:	Java Agent DEvelopment Framework
-Summary(pl):	Szkielet do programowania w Javie
+Summary(pl.UTF-8):   Szkielet do programowania w Javie
 Name:		JADE
 Version:	3.2
 Release:	0.1
@@ -20,9 +20,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 JADE (Java Agent DEvelopment Framework) is a software framework fully
 implemented in Java language.
 
-%description -l pl
+%description -l pl.UTF-8
 JADE (Java Agent DEvelopment Framework) to szkielet oprogramowania w
-pe³ni zaimplementowany w jêzyku Java.
+peÅ‚ni zaimplementowany w jÄ™zyku Java.
 
 # TODO:
 #%package doc

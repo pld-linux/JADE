@@ -10,9 +10,11 @@ Source0:	%{name}-src-%{version}.zip
 # Source0-md5:	3dd2984dd4e61a4eea5f720d854b2f06
 URL:		http://jade.tilab.com/
 BuildRequires:	ant
+BuildRequires:  jpackage-utils
+BuildRequires:  rpmbuild(macros) >= 1.300
 BuildRequires:	jdk
 BuildRequires:	unzip
-Requires:	jre
+Requires:	jpackage-utils
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,25 +26,16 @@ implemented in Java language.
 JADE (Java Agent DEvelopment Framework) to szkielet oprogramowania w
 pełni zaimplementowany w języku Java.
 
-# TODO:
-#%package doc
-#Summary:	Online manual for JADE
-#Summary(pl):	Dokumentacja online do JADE
-#Group:		Documentation
-
-#%description doc
-
 %prep
 %setup -q -n jade
 
 %build
-ant jade
-ant lib
+%ant jade
+%ant lib
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_javadir}/%{name}}
-
 install lib/*.jar $RPM_BUILD_ROOT%{_javadir}/%{name}
 
 %clean
@@ -52,7 +45,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README ChangeLog
 %{_javadir}/%{name}
-
-#%files doc
-#%defattr(644,root,root,755)
-#%doc docs
